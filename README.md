@@ -21,9 +21,6 @@
         |-framework-zuul                  spring cloud网关
 
 # 二、端口规划说明：
-    |-framework-arango
-        |-framework-arango-admin          8080
-        |-framework-arango-search         8081
     |-framework-es
         |-framework-es-admin              8082
         |-framework-es-search             8083
