@@ -1,0 +1,126 @@
+{
+  "aggSearchQos": [
+    {
+      "key": "geo_centroid",
+      "field": "gep_coordinate",
+      "aggType": "GEO_CENTROID"
+    },
+    {
+      "key": "geo_bounds",
+      "field": "gep_coordinate",
+      "aggType": "GEO_BOUNDS"
+    },
+    {
+      "key": "birthday_his",
+      "field": "birthday",
+      "aggType": "DATE_HISTOGRAM",
+      "options": {
+        "interval": "month",
+        "format": "yyyy-MM"
+      },
+      "subs": [
+        {
+          "key": "sum_age",
+          "field": "age",
+          "aggType": "SUM"
+        }
+      ]
+    },
+    {
+      "key": "terms_sex",
+      "field": "sex.keyword",
+      "aggType": "TERMS",
+      "subs": [
+        {
+          "key": "sum_age",
+          "field": "age",
+          "aggType": "SUM"
+        }
+      ]
+    },
+    {
+      "key": "sex_value_count",
+      "field": "sex.keyword",
+      "aggType": "VALUE_COUNT",
+      "subs": []
+    },
+    {
+      "key": "sex_cardinality",
+      "field": "sex.keyword",
+      "aggType": "CARDINALITY",
+      "subs": []
+    },
+    {
+      "key": "age_stats",
+      "field": "age",
+      "aggType": "STATS",
+      "subs": []
+    },
+    {
+      "key": "age_extended_stats",
+      "field": "age",
+      "aggType": "EXTENDED_STATS",
+      "subs": []
+    },
+    {
+      "key": "age_percentiles",
+      "field": "age",
+      "aggType": "PERCENTILES",
+      "options": {
+        "percents": [
+          25.0,
+          50.0,
+          75.0,
+          100.0
+        ]
+      },
+      "subs": []
+    }
+  ],
+  "highlightFields": [
+    "name"
+  ],
+  "hitFields": [
+  ],
+  "indexs": [
+    "graph_cmb_dev2"
+  ],
+  "pageNo": 1,
+  "pageSize": 5,
+  "must": [
+    {
+      "boost": 1,
+      "field": "age",
+      "fieldType": "LONG",
+      "operator": "GT",
+      "value": "20"
+    }
+  ],
+  "mustNot": [
+    {
+      "boost": 1,
+      "field": "sex",
+      "fieldType": "STRING",
+      "operator": "EQ",
+      "value": "女"
+    }
+  ],
+  "should": [
+    {
+      "boost": 1,
+      "field": "name",
+      "fieldType": "STRING",
+      "operator": "EQ",
+      "value": "用户15"
+    }
+  ],
+  "sorts": [
+    {
+      "direction": "DESC",
+      "property": "age"
+    }
+  ],
+  "types": [
+    "tv_user"
+  ]
+}
